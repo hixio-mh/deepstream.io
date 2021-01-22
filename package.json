@@ -42,7 +42,9 @@
     "e2e:http": "npm run e2e -- --tags \"@http\"",
     "e2e:coverage": "nyc cucumber-js test-e2e --require './test-e2e/steps/**/*.ts' --exit && npm run test:coverage:combine",
     "test:all:coverage": "rm -rf .nyc_combined_coverage .nyc_output && npm run test:coverage && npm run e2e:coverage && nyc report --reporter=lcov -t .nyc_combined_coverage",
-    "test:coverage:combine": "rm -rf .nyc_output/processinfo && mkdir -p .nyc_combined_coverage && mv -f .nyc_output/* .nyc_combined_coverage/"
+    "test:coverage:combine": "rm -rf .nyc_output/processinfo && mkdir -p .nyc_combined_coverage && mv -f .nyc_output/* .nyc_combined_coverage/",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -67,7 +69,8 @@
     "source-map-support": "^0.5.19",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v18.3.0",
     "uuid": "^8.2.0",
-    "ws": "^7.3.0"
+    "ws": "^7.3.0",
+    "snyk": "^1.439.0"
   },
   "devDependencies": {
     "@deepstream/client": "^5.1.1",
@@ -90,9 +93,9 @@
     "coveralls": "^3.1.0",
     "cucumber": "^6.0.5",
     "deepstream.io-client-js": "^2.3.4",
-    "husky": "^4.2.5",
+    "husky": "^4.3.7",
     "istanbul": "^0.4.5",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.0",
     "n0p3": "^1.0.2",
     "nexe": "^3.3.7",
     "nyc": "^15",
@@ -139,5 +142,6 @@
     ],
     "sourceMap": true,
     "instrument": true
-  }
+  },
+  "snyk": true
 }
